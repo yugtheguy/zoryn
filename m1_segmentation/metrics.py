@@ -1,14 +1,5 @@
 import torch
 import numpy as np
-from sklearn.metrics import (
-    jaccard_score, 
-    f1_score, 
-    precision_score, 
-    recall_score, 
-    accuracy_score, 
-    confusion_matrix,
-    balanced_accuracy_score
-)
 
 from losses import clDiceLoss, TopologyLoss
 
@@ -45,20 +36,40 @@ class Evaluator:
         cldice_loss = self.cldice_fn(preds, targets).item()
         cldice_score = 1.0 - cldice_loss
 
-        # 4. Scikit-learn Classification Metrics
-        y_true = targets.cpu().numpy().flatten().astype(int)
-        y_pred = preds.cpu().numpy().flatten().astype(int)
+        # 4. Fast PyTorch Tensor Metrics
+        # Avoids sklearn UserWarnings and drastically speeds up evaluation
+        # By ensuring y_true and y_pred are flattened discrete tensors
+        y_true = targets.view(-1)
+        y_pred = preds.view(-1)
 
-        iou = jaccard_score(y_true, y_pred, average='binary', zero_division=1.0)
-        dice = f1_score(y_true, y_pred, average='binary', zero_division=1.0) # Dice is identical to F1
-        precision = precision_score(y_true, y_pred, average='binary', zero_division=1.0)
-        recall = recall_score(y_true, y_pred, average='binary', zero_division=1.0)
-        pixel_accuracy = accuracy_score(y_true, y_pred)
-        balanced_acc = balanced_accuracy_score(y_true, y_pred)
-        
-        # Specificity calculation (True Negative Rate)
-        tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+        tp = (y_true * y_pred).sum().item()
+        tn = ((1 - y_true) * (1 - y_pred)).sum().item()
+        fp = ((1 - y_true) * y_pred).sum().item()
+        fn = (y_true * (1 - y_pred)).sum().item()
+
+        # IoU (Jaccard)
+        union = tp + fp + fn
+        iou = tp / union if union > 0 else 1.0
+
+        # Dice (F1)
+        dice_denom = 2 * tp + fp + fn
+        dice = (2 * tp) / dice_denom if dice_denom > 0 else 1.0
+
+        # Precision
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 1.0
+
+        # Recall (Sensitivity)
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 1.0
+
+        # Specificity
         specificity = tn / (tn + fp) if (tn + fp) > 0 else 1.0
+
+        # Pixel Accuracy
+        total_pixels = y_true.numel()
+        pixel_accuracy = (tp + tn) / total_pixels
+
+        # Balanced Accuracy
+        balanced_acc = (recall + specificity) / 2.0
 
         return {
             "validation_loss": val_loss,
