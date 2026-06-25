@@ -60,8 +60,8 @@ class DeepGlobeDataset(Dataset):
             if mask is None:
                 raise ValueError(f"Failed to read mask at {mask_path}")
         else:
-            # Fallback to empty mask if missing (safeguard)
-            mask = np.zeros(image.shape[:2], dtype=np.uint8)
+            # Strict fail-fast instead of silent fallback to prevent false-negative training
+            raise FileNotFoundError(f"Missing required mask file at {mask_path}")
 
         # Apply augmentations (Albumentations)
         if self.transform:
@@ -96,7 +96,8 @@ def get_transforms(is_train: bool = True) -> A.Compose:
             A.VerticalFlip(p=0.5),
             A.RandomRotate90(p=0.5),
             A.ColorJitter(brightness=0.2, contrast=0.2, p=0.3),
-            A.CoarseDropout(max_holes=8, max_height=64, max_width=64, p=0.3), # Simulated Occlusion
+            # CoarseDropout explicitly targets ONLY the image, preserving the ground truth mask for occlusion learning
+            A.CoarseDropout(num_holes_range=(1, 8), hole_height_range=(16, 64), hole_width_range=(16, 64), fill=0, fill_mask=None, p=0.3), 
             A.Normalize(mean=MEAN, std=STD),
             ToTensorV2()
         ], additional_targets={'mask': 'mask'}) # Implicitly uses nearest neighbor for masks
@@ -132,8 +133,8 @@ def get_dataloaders(
         print(f"Warning: Directory {data_dir} not found. (Expected during GitHub-only workflow)")
         return None, None
 
-    # Collect all image files
-    all_images = list(base_path.glob(f'*{DEEPGLOBE_IMG_SUFFIX}'))
+    # Collect all image files and sort for deterministic cross-platform splits
+    all_images = sorted(list(base_path.glob(f'*{DEEPGLOBE_IMG_SUFFIX}')))
     if not all_images:
         print(f"Warning: No files ending with {DEEPGLOBE_IMG_SUFFIX} found in {data_dir}.")
         return None, None
