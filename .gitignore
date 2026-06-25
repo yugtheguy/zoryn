@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# Kaggle outputs
+checkpoints/
+predictions/
+graphs/
+analysis/
+
+# Models
+*.pth
+*.pt
+
+# Datasets
+data/
+datasets/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test temp
+test_artifacts_tmp/
+my_first_run/

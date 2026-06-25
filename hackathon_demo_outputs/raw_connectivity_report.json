@@ -1,0 +1,20 @@
+{
+  "total_nodes": 107,
+  "total_edges": 150,
+  "num_connected_components": 4,
+  "largest_component_nodes": 82,
+  "largest_component_edges": 118,
+  "largest_component_ratio": 0.7664,
+  "component_node_sizes": [
+    82,
+    21,
+    2,
+    2
+  ],
+  "stats": {
+    "mean": 26.75,
+    "min": 2,
+    "max": 82,
+    "median": 11.5
+  }
+}
