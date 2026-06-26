@@ -7,8 +7,10 @@ checkpoint resilience, and lightweight CSV metric tracking for Kaggle execution.
 import os
 import argparse
 import csv
+import random
 from pathlib import Path
 from typing import Dict
+import numpy as np
 
 import torch
 from tqdm import tqdm
@@ -76,7 +78,17 @@ def validate_one_epoch(
         
     return running_loss / len(loader)
 
+def seed_everything(seed: int = 42):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
 def main(args: argparse.Namespace):
+    seed_everything()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Executing on device: {device}")
     
