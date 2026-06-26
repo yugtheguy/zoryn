@@ -1,0 +1,46 @@
+{
+  "overall_resilience_index": 0.8011,
+  "overall_classification": "Moderately vulnerable",
+  "baseline_metrics": {
+    "average_shortest_path": 370.3039,
+    "global_efficiency": 0.145
+  },
+  "scenarios": {
+    "top_1_knockouts": {
+      "k_knockouts": 1,
+      "baseline_asp": 370.3039,
+      "damaged_asp": 317.3914,
+      "asp_resilience_index": 1.0,
+      "efficiency_resilience_index": 0.7614,
+      "composite_resilience_index": 0.8807,
+      "interpretation": "Highly resilient"
+    },
+    "top_3_knockouts": {
+      "k_knockouts": 3,
+      "baseline_asp": 370.3039,
+      "damaged_asp": 200.4773,
+      "asp_resilience_index": 1.0,
+      "efficiency_resilience_index": 0.6172,
+      "composite_resilience_index": 0.8086,
+      "interpretation": "Moderately vulnerable"
+    },
+    "top_5_knockouts": {
+      "k_knockouts": 5,
+      "baseline_asp": 370.3039,
+      "damaged_asp": 200.4773,
+      "asp_resilience_index": 1.0,
+      "efficiency_resilience_index": 0.6021,
+      "composite_resilience_index": 0.8011,
+      "interpretation": "Moderately vulnerable"
+    },
+    "top_10_knockouts": {
+      "k_knockouts": 10,
+      "baseline_asp": 370.3039,
+      "damaged_asp": 207.7714,
+      "asp_resilience_index": 1.0,
+      "efficiency_resilience_index": 0.5331,
+      "composite_resilience_index": 0.7666,
+      "interpretation": "Moderately vulnerable"
+    }
+  }
+}

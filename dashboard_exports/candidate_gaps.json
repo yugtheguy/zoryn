@@ -1,0 +1,155 @@
+{
+  "num_candidate_gaps": 10,
+  "candidates": [
+    {
+      "source": 10,
+      "target": 58,
+      "source_coords": [
+        324,
+        179
+      ],
+      "target_coords": [
+        319,
+        183
+      ],
+      "distance": 6.4,
+      "orientation_score": 0.8389,
+      "gap_score": 0.8639
+    },
+    {
+      "source": 43,
+      "target": 72,
+      "source_coords": [
+        305,
+        99
+      ],
+      "target_coords": [
+        340,
+        100
+      ],
+      "distance": 35.01,
+      "orientation_score": 0.9849,
+      "gap_score": 0.7755
+    },
+    {
+      "source": 88,
+      "target": 92,
+      "source_coords": [
+        257,
+        350
+      ],
+      "target_coords": [
+        255,
+        314
+      ],
+      "distance": 36.06,
+      "orientation_score": 0.9788,
+      "gap_score": 0.7654
+    },
+    {
+      "source": 42,
+      "target": 87,
+      "source_coords": [
+        195,
+        100
+      ],
+      "target_coords": [
+        155,
+        99
+      ],
+      "distance": 40.01,
+      "orientation_score": 0.9852,
+      "gap_score": 0.7449
+    },
+    {
+      "source": 34,
+      "target": 54,
+      "source_coords": [
+        99,
+        154
+      ],
+      "target_coords": [
+        101,
+        195
+      ],
+      "distance": 41.05,
+      "orientation_score": 0.9799,
+      "gap_score": 0.7353
+    },
+    {
+      "source": 15,
+      "target": 97,
+      "source_coords": [
+        425,
+        400
+      ],
+      "target_coords": [
+        375,
+        399
+      ],
+      "distance": 50.01,
+      "orientation_score": 0.9856,
+      "gap_score": 0.6836
+    },
+    {
+      "source": 57,
+      "target": 96,
+      "source_coords": [
+        211,
+        203
+      ],
+      "target_coords": [
+        179,
+        186
+      ],
+      "distance": 36.24,
+      "orientation_score": 0.7934,
+      "gap_score": 0.653
+    },
+    {
+      "source": 57,
+      "target": 74,
+      "source_coords": [
+        211,
+        203
+      ],
+      "target_coords": [
+        187,
+        179
+      ],
+      "distance": 33.94,
+      "orientation_score": 0.7658,
+      "gap_score": 0.6506
+    },
+    {
+      "source": 71,
+      "target": 74,
+      "source_coords": [
+        203,
+        211
+      ],
+      "target_coords": [
+        187,
+        179
+      ],
+      "distance": 35.78,
+      "orientation_score": 0.7815,
+      "gap_score": 0.6488
+    },
+    {
+      "source": 71,
+      "target": 96,
+      "source_coords": [
+        203,
+        211
+      ],
+      "target_coords": [
+        179,
+        186
+      ],
+      "distance": 34.66,
+      "orientation_score": 0.7646,
+      "gap_score": 0.6455
+    }
+  ]
+}

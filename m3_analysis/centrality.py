@@ -6,6 +6,8 @@ Identifies gatekeeper intersections, critical chokepoints, and Single Points of 
 """
 
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import argparse
 import pickle
 import json
@@ -75,20 +77,19 @@ def compute_betweenness_centrality(graph: nx.Graph, weight: str = "weight") -> d
     return report
 
 def main():
-    parser = argparse.ArgumentParser(description="M3 Module 7: Betweenness Centrality")
-    parser.add_argument('--input_graph', type=str, required=True, help="Input graph pickle")
-    parser.add_argument('--output_centrality', type=str, default="critical_nodes.json", help="Output JSON centrality")
+    parser = argparse.ArgumentParser(description="Standalone Member 3 Network Analysis Engine")
+    parser.add_argument('--source', type=str, default="m2", help="Source pipeline indicator")
+    parser.add_argument('--m2_file', type=str, default=None, help="Input healed M2 graph pickle file")
+    parser.add_argument('--input_graph', type=str, default=None, help="Input graph pickle file")
+    parser.add_argument('--output_dir', type=str, default="dashboard_exports/", help="Output directory")
     args = parser.parse_args()
     
-    with open(args.input_graph, 'rb') as f:
-        graph = pickle.load(f)
+    graph_path = args.m2_file or args.input_graph or "dashboard_exports/healed_road_graph.gpickle"
+    if not os.path.exists(graph_path):
+        raise FileNotFoundError(f"Cannot find input graph file: {graph_path}")
         
-    report = compute_betweenness_centrality(graph)
-    
-    os.makedirs(os.path.dirname(os.path.abspath(args.output_centrality)), exist_ok=True)
-    with open(args.output_centrality, 'w') as f:
-        json.dump(report, f, indent=2)
-    print(f"Centrality report saved to: {os.path.abspath(args.output_centrality)}")
+    from m3_analysis import run_standalone_m3
+    run_standalone_m3(graph_path, args.output_dir)
 
 if __name__ == "__main__":
     main()

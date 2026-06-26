@@ -1,0 +1,149 @@
+{
+  "baseline": {
+    "num_nodes": 107,
+    "num_components": 2,
+    "lcc_nodes": 105,
+    "reachability_ratio": 0.9813,
+    "lcc_average_shortest_path": 370.3039,
+    "global_efficiency": 0.145
+  },
+  "single_node_failures": {
+    "30": {
+      "knockout_node_id": 30,
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 70,
+        "reachability_ratio": 0.6604,
+        "lcc_average_shortest_path": 317.3914,
+        "global_efficiency": 0.1104
+      },
+      "efficiency_degradation": 0.0346
+    },
+    "1": {
+      "knockout_node_id": 1,
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 71,
+        "reachability_ratio": 0.6698,
+        "lcc_average_shortest_path": 314.4519,
+        "global_efficiency": 0.1114
+      },
+      "efficiency_degradation": 0.0336
+    },
+    "44": {
+      "knockout_node_id": 44,
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 71,
+        "reachability_ratio": 0.6698,
+        "lcc_average_shortest_path": 313.8809,
+        "global_efficiency": 0.1086
+      },
+      "efficiency_degradation": 0.0364
+    },
+    "51": {
+      "knockout_node_id": 51,
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 72,
+        "reachability_ratio": 0.6792,
+        "lcc_average_shortest_path": 311.2125,
+        "global_efficiency": 0.1094
+      },
+      "efficiency_degradation": 0.0356
+    },
+    "9": {
+      "knockout_node_id": 9,
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 75,
+        "reachability_ratio": 0.7075,
+        "lcc_average_shortest_path": 306.257,
+        "global_efficiency": 0.1151
+      },
+      "efficiency_degradation": 0.0299
+    }
+  },
+  "multi_node_failures": {
+    "top_1_knockouts": {
+      "k": 1,
+      "knockout_nodes": [
+        30
+      ],
+      "metrics_after_failure": {
+        "num_nodes": 106,
+        "num_components": 3,
+        "lcc_nodes": 70,
+        "reachability_ratio": 0.6604,
+        "lcc_average_shortest_path": 317.3914,
+        "global_efficiency": 0.1104
+      },
+      "efficiency_degradation": 0.0346
+    },
+    "top_3_knockouts": {
+      "k": 3,
+      "knockout_nodes": [
+        30,
+        1,
+        44
+      ],
+      "metrics_after_failure": {
+        "num_nodes": 104,
+        "num_components": 4,
+        "lcc_nodes": 36,
+        "reachability_ratio": 0.3462,
+        "lcc_average_shortest_path": 200.4773,
+        "global_efficiency": 0.0895
+      },
+      "efficiency_degradation": 0.0555
+    },
+    "top_5_knockouts": {
+      "k": 5,
+      "knockout_nodes": [
+        30,
+        1,
+        44,
+        51,
+        9
+      ],
+      "metrics_after_failure": {
+        "num_nodes": 102,
+        "num_components": 5,
+        "lcc_nodes": 36,
+        "reachability_ratio": 0.3529,
+        "lcc_average_shortest_path": 200.4773,
+        "global_efficiency": 0.0873
+      },
+      "efficiency_degradation": 0.0577
+    },
+    "top_10_knockouts": {
+      "k": 10,
+      "knockout_nodes": [
+        30,
+        1,
+        44,
+        51,
+        9,
+        105,
+        33,
+        63,
+        103,
+        64
+      ],
+      "metrics_after_failure": {
+        "num_nodes": 97,
+        "num_components": 7,
+        "lcc_nodes": 32,
+        "reachability_ratio": 0.3299,
+        "lcc_average_shortest_path": 207.7714,
+        "global_efficiency": 0.0773
+      },
+      "efficiency_degradation": 0.0677
+    }
+  }
+}

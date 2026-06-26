@@ -1,0 +1,17 @@
+{
+  "before_healing": {
+    "num_connected_components": 4,
+    "largest_component_nodes": 82,
+    "largest_component_ratio": 0.7664
+  },
+  "after_healing": {
+    "num_connected_components": 2,
+    "largest_component_nodes": 105,
+    "largest_component_ratio": 0.9813
+  },
+  "healing_metrics": {
+    "healed_edges_added": 2,
+    "components_merged": 2,
+    "connectivity_ratio": 1.2805
+  }
+}
