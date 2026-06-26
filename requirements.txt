@@ -11,3 +11,7 @@ streamlit
 folium
 scikit-image
 matplotlib
+scipy
+osmnx
+geopandas
+groq
